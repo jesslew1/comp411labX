@@ -2,16 +2,16 @@
 
 animal:  .space	 300      # animal array that can hold 20 animals that are no more than 15 characters
 lyric:   .space	 1200     # lyric array that can  hold 20 lines that are no more than 60 characters
-oldLady: 	 .asciiz	  "There was an old lady who swallowed a " 
+oldLady: .asciiz	  "There was an old lady who swallowed a " 
 she:	 .asciiz	  "She swallowed the "
-toCatch:   .asciiz	  " to catch the "
-semicolon:	 .asciiz	  ";"
+toCatch: .asciiz	  " to catch the "
+semicolon: .asciiz	  ";"
 idk:     .asciiz          "I don't know why she swallowed a "
 dash:    .asciiz 	  " - "
 space:	 .asciiz	  " "
 end:	 .asciiz	  "END\n"
 newline: .asciiz          "\n"
-terminate: .asciiz       	  "\0"
+terminate: .asciiz        "\0"
 
 .text 0x3000
 
@@ -20,9 +20,9 @@ main:
 	addi $s1, $0, 40	#set s1 to 40 (20 lines and 20 animals)
 	addi $s2, $0, 0		#animal counter
 	addi $s3, $0, 0		#lyric counter
-	addi $s4, $0, 0		#counter for nurseryrhyme loop
+	addi $s4, $0, 0		#counter for nurseryRhyme loop
 	addi $s5, $0, 2		#for divide by 2 to be used later
-	addi $s6, $0, 0		#counter for nurseryrhyme loop
+	addi $s6, $0, 0		#counter for nurseryRhyme loop
 	addi $s7, $0, 0		#counter for space
 	
 	addi $t4, $0, 15	#15
@@ -81,7 +81,7 @@ divideBy2:
 	addi $s6, $s0, -1	#store number of pairs - 1 in s6  
  
     
-nurseryrhyme:
+nurseryRhyme:
   	beq $s0, $s4, nr	#if counter = number of pairs, break
   	mult $s4, $t4
   	mflo $t0		#current for animal (I*15)
@@ -128,7 +128,7 @@ cont:
   
   
   	addi $s4, $s4, 1	#increment counter by 1
-  	j nurseryrhyme
+  	j nurseryRhyme
   
 
 zero:
@@ -150,7 +150,7 @@ zero:
    
    
   	addi $s4, $s4, 1	#increment counter by 1
-   	j nurseryrhyme
+   	j nurseryRhyme
 
 nr: 
  	bltz $s6, exit
